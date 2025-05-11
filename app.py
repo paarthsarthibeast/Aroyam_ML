@@ -14,7 +14,7 @@ THRESHOLD_PATH = MODEL_DIR / "best_threshold.txt"
 st.set_page_config(
     page_title="Heart Failure Readmission Predictor",
     layout="centered",
-    page_icon="❤️",
+   page_icon="🫀",
     initial_sidebar_state="expanded"
 )
 
@@ -140,8 +140,8 @@ with st.sidebar:
     # Display a simple header instead of an image
     st.markdown("""
     <div style="background-color:#0072B5; padding:10px; border-radius:5px; margin-bottom:10px">
-        <h2 style="color:white; text-align:center; margin:0">❤️</h2>
-    </div>
+    <h2 style="color:white; text-align:center; font-size:50px; margin:0">❤️</h2>
+</div>
     """
     , unsafe_allow_html=True)
     st.title("Heart Failure Readmission Predictor")
@@ -177,7 +177,7 @@ with st.sidebar:
     st.caption("© 2025 Heart Failure Risk Prediction Tool")
 
 # --- App Title ---
-st.markdown("<h1 class='main-title'>❤️ Heart Failure Readmission Risk Assessment</h1>", unsafe_allow_html=True)
+st.markdown("<h1 class='main-title'>🫀 Heart Failure Readmission Risk Assessment</h1>", unsafe_allow_html=True)
 st.markdown("<p class='subtitle'>Predict 30-day readmission risk for heart failure patients</p>", unsafe_allow_html=True)
 
 tab1, tab2 = st.tabs(["🩺 Risk Assessment", "📚 User Guide"])
