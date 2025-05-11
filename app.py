@@ -15,11 +15,11 @@ THRESHOLD_PATH = MODEL_DIR / "best_threshold.txt"
 st.set_page_config(
     page_title="Heart Failure Readmission Predictor",
     layout="centered",
-    page_icon="❤️",
+    page_icon="🫀",
     initial_sidebar_state="expanded"
 )
 
-# Enhanced CSS with animations and better visual design
+
 st.markdown("""
 <style>
     /* Base styling */
@@ -115,6 +115,7 @@ st.markdown("""
         transition: all 0.3s ease;
         width: 100%;
         box-shadow: 0 2px 5px rgba(0,114,181,0.3);
+        
     }
     
     .stButton>button:hover {
@@ -255,9 +256,9 @@ def load_model():
 
 model, best_threshold = load_model()
 
-# --- Animated Sidebar Info with better styling ---
+
 with st.sidebar:
-    # Animated header
+    # header
     st.markdown("""
     <div style="background: linear-gradient(90deg, #0072B5 0%, #00add8 100%); 
          padding:15px; border-radius:10px; margin-bottom:15px; 
@@ -308,19 +309,18 @@ with st.sidebar:
     st.markdown("---")
     st.caption("© 2025 Heart Failure Risk Prediction Tool")
 
-# --- App Title with animation ---
-st.markdown('<h1 class="main-title"><span class="heart-icon">❤️</span> Heart Failure Readmission Risk Assessment</h1>', unsafe_allow_html=True)
+# --- App Title  ---
+st.markdown('<h1 class="main-title"><span class="heart-icon">🫀</span> Heart Failure Readmission Risk Assessment</h1>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">Predict 30-day readmission risk for heart failure patients</p>', unsafe_allow_html=True)
 
-# Create tabs with icons
+# tabs 
 tab1, tab2 = st.tabs(["🩺 Risk Assessment", "📚 User Guide"])
 
 # --- Main Content ---
 with tab1:
-    # st.markdown('<div class="card">', unsafe_allow_html=True)
     st.markdown('<h2 class="section-title">📝 Patient Information</h2>', unsafe_allow_html=True)
 
-    # Input Form with enhanced styling and animated appearance
+    # Input Form 
     with st.form("patient_form"):
         col1, col2 = st.columns(2)
         
@@ -355,17 +355,17 @@ with tab1:
             drg_severity = st.slider("DRG Severity", 0, 4, 1, help="Diagnosis Related Group severity (0-4)")
         
         st.markdown('<br>', unsafe_allow_html=True)
-        submitted = st.form_submit_button("Generate Risk Assessment")
+        submitted = st.form_submit_button("Generate Risk Assessment", use_container_width=True)
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # --- Feature Encoding and Prediction with animation ---
+    # --- Feature Encoding and Prediction  ---
     if submitted:
-        # Create animated progress indicator
+        # progress indicator
         progress_bar = st.progress(0)
         status_text = st.empty()
         
-        # Animated progress simulation
+        # Progress simulation
         for i in range(101):
             # Update progress bar
             progress_bar.progress(i)
@@ -380,7 +380,6 @@ with tab1:
             else:
                 status_text.text("✅ Finalizing assessment...")
             
-            # Add a small delay to show animation
             time.sleep(0.01)
         
         # Prepare and encode data
@@ -414,7 +413,7 @@ with tab1:
             for col in model.feature_names_in_:
                 if col not in input_df.columns:
                     input_df[col] = 0  # Assume 0 for missing binary features
-            input_df = input_df[model.feature_names_in_]  # Ensure correct order
+            input_df = input_df[model.feature_names_in_]  
 
         # Prediction
         prob = model.predict_proba(input_df)[:, 1][0]
@@ -424,11 +423,10 @@ with tab1:
         status_text.empty()
         progress_bar.empty()
         
-        # Display animated results card
-        # st.markdown('<div class="card">', unsafe_allow_html=True)
+        # Display results card
         st.markdown('<h3 class="section-title">Risk Assessment Results</h3>', unsafe_allow_html=True)
         
-        # Patient summary with enhanced styling
+        # Patient summary 
         st.markdown('<h5 style="color:#555;">Patient Summary</h5>', unsafe_allow_html=True)
         col_sum1, col_sum2, col_sum3, col_sum4 = st.columns(4)
         col_sum1.metric("Age", f"{age} years")
@@ -436,7 +434,7 @@ with tab1:
         col_sum3.metric("Admission", admission_type)
         col_sum4.metric("DRG Severity", f"{drg_severity}/4")
         
-        # Risk visualization with animation
+        # Risk visualization 
         st.markdown('<h5 style="color:#555; margin-top:15px;">Readmission Risk</h5>', unsafe_allow_html=True)
         
         # Create custom risk score visualization
@@ -446,15 +444,8 @@ with tab1:
             bar_color = "#e74c3c"
         else:
             bar_color = "#2ecc71"
-            
-        # st.markdown(f"""
-        # <div class="risk-container">
-        #     <div class="risk-bar" style="width:{risk_percentage}%; background-color:{bar_color};"></div>
-        #     <div class="risk-label">{risk_percentage}%</div>
-        # </div>
-        # """, unsafe_allow_html=True)
-        
-        # Clinical assessment and recommendations with enhanced styling and animation
+         
+        # Clinical assessment and recommendations 
         if prediction:
             st.markdown(f"""
             <div class="high-risk">
@@ -508,7 +499,7 @@ with tab1:
             </div>
             """, unsafe_allow_html=True)
         
-        # Additional information with improved expander
+        # Additional information 
         with st.expander("View Detailed Risk Factors Analysis"):
             st.markdown('<h5 style="color:#555;">Risk Factors Analysis</h5>', unsafe_allow_html=True)
             
@@ -539,14 +530,14 @@ with tab1:
             
         st.markdown("</div>", unsafe_allow_html=True)
         
-        # Print date/time of assessment with better styling
+        # Print date/time of assessment 
         st.markdown(f"""
         <div style="text-align:center; color:#666; font-style:italic; margin-top:10px;">
             Assessment generated on: May 11, 2025
         </div>
         """, unsafe_allow_html=True)
     else:
-        # Show placeholder with animation when no prediction has been made
+        # Show placeholder 
         st.markdown("""
         <div style="background-color:#f8f9fa; border-left:4px solid #0072B5; padding:20px; border-radius:8px; 
         text-align:center; animation: fadeIn 1s ease-out;">
@@ -555,9 +546,8 @@ with tab1:
         </div>
         """, unsafe_allow_html=True)
 
-# User Guide Tab with improved styling
+# User Guide Tab 
 with tab2:
-    # st.markdown('<div class="card">', unsafe_allow_html=True)
     st.markdown('<h2 class="section-title">📚 User Guide</h2>', unsafe_allow_html=True)
     
     st.markdown('<h3 style="color:#0072B5;">How to Use This Tool</h3>', unsafe_allow_html=True)
@@ -608,7 +598,7 @@ with tab2:
     """)
     st.markdown('</div>', unsafe_allow_html=True)
 
-# Footer with improved styling
+# Footer
 st.markdown("""
 <div style="background-color:#f8f9fa; padding:15px; border-radius:8px; margin-top:20px; text-align:center; animation: fadeIn 1.2s ease-out;">
     <p style="color:#555; margin:0;">This tool is designed to assist healthcare providers in identifying patients who may benefit from enhanced care coordination or discharge planning.</p>
