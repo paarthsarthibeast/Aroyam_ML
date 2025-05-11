@@ -568,7 +568,7 @@ with tab2:
         
     with st.expander("Clinical Data"):
         st.markdown("""
-        - **Average Lab Value**: Mean of normalized lab values
+        - **Average Lab Value**: Mean of normalized lab values (30-300)
         - **CPT Code Count**: Number of procedures performed
         - **Cardiovascular ICD-9 Code**: Presence of cardiovascular diagnosis code
         - **DRG Severity**: Diagnosis Related Group severity score (0-4)
