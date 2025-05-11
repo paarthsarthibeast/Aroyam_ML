@@ -1,0 +1,10 @@
+#---Requirements---#
+
+streamlit
+pandas
+numpy
+scikit-learn
+matplotlib
+plotly
+pickle 
+seaborn
