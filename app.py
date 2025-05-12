@@ -609,7 +609,7 @@ with tab1:
         <div style="background-color:#f8f9fa; border-left:4px solid #0072B5; padding:20px; border-radius:8px; 
         text-align:center; animation: fadeIn 1s ease-out;">
             <div style="font-size:40px; margin-bottom:10px;">👆</div>
-            <p style="margin:0; font-size:16px;">Fill in the patient information above and click 'Generate Risk Assessment' to view results.</p>
+            <p style="margin:0; font-size:16px; color:#333333;">Fill in the patient information above and click 'Generate Risk Assessment' to view results.</p>
         </div>
         """, unsafe_allow_html=True)
 
