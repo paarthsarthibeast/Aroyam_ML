@@ -191,8 +191,6 @@ st.markdown("""
         font-weight: bold;
             
     }
-   
-   
     
     /* Expander styling */
     .streamlit-expanderHeader {
